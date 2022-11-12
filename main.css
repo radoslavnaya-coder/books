@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+/* html{overflow: hidden;} */
+*{
+    font-family: 'Rubik';
+}
+
+body{
+    background: url("/img/back.jpg");
+    margin: 0;
+    padding: 0;
+}
+header{
+    background: #fff;
+    margin: 11.5vh 11.5vw 0 11.5vw;
+    width: 77vw;
+    height: 100vh;
+}
+.logo{
+    margin: 2vh 29vw;
+}
+header div{
+    display: inline-flex;
+}
+.feed-img{
+    padding: 9vh 9vw;
+    position: absolute;
+}
+.search{
+    position: absolute;
+    border-radius: 100px;
+    height: 4vh;
+    margin: 9vh 38vw;
+    border: 3px solid black;
+    padding: 0.2vh 8vw 0.2vh 1vw;
+}
+.search img{
+    position: relative;
+    padding: 0.4vh 1vw 0.4vh 0;
+    width: 28px;
+    height: 28px;
+}
+.search input{
+    outline: none;
+    border: none;
+    font-size: 24px;
+}
+.search-help__links{
+    display: block;
+    position: relative;
+    margin-top: 16vh;
+    margin-left: 38vw;
+    width: 38vw;
+}
+.search-help__links a{
+    border: 1px solid black;
+    border-radius: 100px;
+    text-decoration: none;
+    color: black;
+    padding: 0.5vh 0.8vw;
+    font-size: 24px;
+    margin: 1vh 0.4vw;
+}
+.search-help__links p{
+    margin: 1.5vh 0;
+    display: inline-block;
+}
+section{
+    background: #fff;
+    margin: 0vh 11.5vw 11.5vh 11.5vw;
+    padding: 0;
+    width: 77vw;
+    height: 100vh;
+}
+section div{
+    display: inline-block;
+}
+.back-menu{
+    margin-left: 3vw;
+}
+.back-menu p{
+    font-size: 19px;
+    line-height: 4px;
+}
+.card{
+    height: 420px;
+    width: 313px;
+    background-color: #d9d9d930;
+}
+.card a, .back-menu a{
+    text-decoration: none;
+    color: black;
+}
+.card p{
+    margin-left: 1vw;
+    line-height: 5px;
+    font-size: 19px;
+}
+.card img{
+    width: 150px;
+    height: 237px;
+    padding: 3vh 0 0 4.3vw;
+}
+#check{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    padding: 9px;
+    border: 1px solid black;
+    margin-bottom: -0.2vh;
+}
+#check:checked {
+    background-color: black;
+    border: 7px solid #d9d9d9;
+    padding: 3px;
+}
