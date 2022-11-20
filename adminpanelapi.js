@@ -8,7 +8,7 @@ async function getGenrename() {
         document.querySelector(".search-help__links").innerHTML += `
             <div class="links" id="orange-clicker"><a>${genres.genre_name}</a></div>
     `;
-    });
+    })
 }
 
 getGenrename();
@@ -28,11 +28,24 @@ async function getBooks() {
             <p class="card-p">${books.author_name}</p>
             <p class="card-p">${books.book_year}</p>
             <p class="topscript" style="width: 188px;">Редактировать</p>
-            <p class="topscript" style="width: 120px;">Удалить</p>
+            <p onclick="removeBook(${books.book_id})" class="topscript" style="width: 120px; cursor:pointer">Удалить</p>
         </div>
-
     `;
+    })
+}
+
+
+
+//remove books
+
+async function removeBook(book_id) {
+    const rem = await fetch(`http://books-api/books/${book_id}`, {
+         method: 'DELETE'
     });
+    const deletedata = await rem.json();
+    if (deletedata.status === true) {
+        await getBooks();
+    }
 }
 
 getBooks();

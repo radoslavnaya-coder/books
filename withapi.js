@@ -16,7 +16,7 @@ getGenrename();
 //books generation
 
 async function getBooks() {
-    let data = await fetch('http://books-api/books');
+    let data = await fetch("http://books-api/books");
     let book = await data.json();
     document.querySelector('.card_container').innerHTML = '';
     book.forEach((books) => {
