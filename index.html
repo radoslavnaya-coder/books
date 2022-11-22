@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="main.css" />
-
-    <title>Document</title>
+    <link type="image/x-con" href="/img/logo.png" rel="icon">
+    <title>Bookbar Сайт для поиска книги</title>
 </head>
 
 <body>
@@ -16,8 +16,8 @@
         <div>
             <img class="feed-img" src="/img/feedimg.jpg" />
             <div class="search">
-                <a href=""><img src="/img/search.png" /></a>
-                <input type="search" placeholder="Например: Стивен Кинг" />
+                <a style="cursor: pointer;"><img onclick="search()" src="/img/search.png" /></a>
+                <input id="searchbar" type="search" placeholder="Например: Стивен Кинг" />
             </div>
             <div class="search-help__links">
                 <!-- <div class="links" id="orange-clicker"><a>Ужасы</a></div>
@@ -57,67 +57,7 @@
             <p style="font-size: 19px;"><label for="check"><input id="check" type="checkbox"></label>   Кроуфорд К.</p>
         </div> -->
         <div class="card_container">
-            <div class="card">
-                <img src="/img/feedimg.jpg" />
-                <a href=""></a>
-                <p style="font-size: 24px;text-align: center;line-height: 25px;">Название книги Название книги</p></a>
-                <p class="card-p">Имя Фамилия автора</p>
-                <p class="card-p">Год</p>
-            </div>
-            <div class="card">
-                <img src="/img/feedimg.jpg" />
-                <a href="">
-                <p style="font-size: 24px;text-align: center;line-height: 25px;">Название книги///////////////////////
-                </p></a>
-                <p>Имя Фамилия автора</p>
-                <p>Год</p>
-            </div>
-            <div class="card">
-                <img src="/img/feedimg.jpg" />
-                <a href=""></a>
-                <p style="font-size: 24px;text-align: center;line-height: 25px;">Название книги////////////////////</p>
-                </a>
-                <p>Имя Фамилия автора</p>
-                <p>Год</p>
-            </div>
-            <div class="card">
-                <img src="/img/feedimg.jpg" />
-                <a href=""></a>
-                <p style="font-size: 24px;text-align: center;line-height: 25px;">Название книги////////////////////</p>
-                </a>
-                <p>Имя Фамилия автора</p>
-                <p>Год</p>
-            </div>
-            <div class="card card__padding">
-                <img src="/img/feedimg.jpg" />
-                <a href=""></a>
-                <p style="font-size: 24px;text-align: center;line-height: 25px;">Название книги Название книги</p></a>
-                <p>Имя Фамилия автора</p>
-                <p>Год</p>
-            </div>
-            <div class="card">
-                <img src="/img/feedimg.jpg" />
-                <a href=""></a>
-                <p style="font-size: 24px;text-align: center;line-height: 25px;">Название книги////////////////</p></a>
-                <p>Имя Фамилия автора</p>
-                <p>Год</p>
-            </div>
-            <div class="card">
-                <img src="/img/feedimg.jpg" />
-                <a href=""></a>
-                <p style="font-size: 24px;text-align: center;line-height: 25px;">Название книги////////////////////</p>
-                </a>
-                <p>Имя Фамилия автора</p>
-                <p>Год</p>
-            </div>
-            <div class="card">
-                <img src="/img/feedimg.jpg" />
-                <a href=""></a>
-                <p style="font-size: 24px;text-align: center;line-height: 25px;">Название книги////////////////////</p>
-                </a>
-                <p>Имя Фамилия автора</p>
-                <p>Год</p>
-            </div>
+            
         </div>
     </section>
     <script src="withapi.js"></script>

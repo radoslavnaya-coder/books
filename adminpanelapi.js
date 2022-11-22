@@ -27,7 +27,7 @@ async function getBooks() {
             <p style="font-size: 24px;text-align: center;line-height: 25px;">${books.book_name}</p></a>
             <p class="card-p">${books.author_name}</p>
             <p class="card-p">${books.book_year}</p>
-            <p class="topscript" style="width: 188px;">Редактировать</p>
+            <a href="update.html"><p class="topscript" style="width: 188px">Редактировать</p></a>
             <p onclick="removeBook(${books.book_id})" class="topscript" style="width: 120px; cursor:pointer">Удалить</p>
         </div>
     `;

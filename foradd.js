@@ -6,7 +6,7 @@ async function getGenrename() {
     document.querySelector('.selected-genre').innerHTML = '';
     genre.forEach((genres) => {
         document.querySelector('.selected-genre').innerHTML += `
-            <option value="${genres.book_genre_id}" name="author">${genres.genre_name}</option>
+            <option id="book_genre" value="${genres.book_genre_id}" name="book_genre">${genres.genre_name}</option>
     `
     })
 }
@@ -14,14 +14,40 @@ async function getGenrename() {
 getGenrename();
 
 async function getAuthors() {
-    let author_data = await fetch('http://books-api/author');
+    let author_data = await fetch('http://books-api/books');
     let author = await author_data.json();
     document.querySelector('.selected-author').innerHTML = '';
     author.forEach((authors) => {
         document.querySelector('.selected-author').innerHTML += `
-            <option value="${authors.author_id}" name="book_genre">${authors.author_name}</option>
+            <option id="author" value="${authors.author_id}" name="author">${authors.author_name}</option>
         `
     })
 }
 
 getAuthors();
+
+async function addBook() {
+    const bookimage = document.getElementById('bookimage').files[0],
+        name = document.getElementById('name').value,
+        author = document.getElementById('author').value,
+        book_genre = document.getElementById('book_genre').value,
+        book_year = document.getElementById('book_year').value,
+        script = document.getElementById('script').value;
+    
+    let formData = new FormData();
+        formData.append('bookimage', bookimage);
+        formData.append('book_name', name);
+        formData.append('author_id', author);
+        formData.append('book_genre_id', book_genre);
+        formData.append('book_year', book_year);
+        formData.append('book_script', script);
+
+    const mes = await fetch('http://books-api/books', {
+        method: 'POST',
+        body: formData
+    });
+    const data = await mes.json();
+    if (data.status === true) {
+        await getBooks();
+    }
+}
