@@ -34,8 +34,6 @@ async function getBooks() {
     })
 }
 
-
-
 //remove books
 
 async function removeBook(book_id) {
