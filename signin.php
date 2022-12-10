@@ -5,14 +5,20 @@
     $login = $_POST['login'];
     $password = $_POST['password'];
 
-    $check_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
+    $check_admin = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
 
-    if(mysqli_num_rows($check_user)>0){
-        $user = mysqli_fetch_assoc($check_user);
-        header('Location: ../adminpanel.html');
+    if(mysqli_num_rows($check_admin)>0){
+        $admin = mysqli_fetch_assoc($check_admin);
+
+        $_SESSION['admin'] = [
+            "login" => $admin['login'],
+            "password" => $admin['password']
+        ];
+        header('Location: ../adminpanel.php');
     }
     else{
-        header('Location: ../index.html');
+        $_SESSION['message'] = 'Access denied';
+        header('Location: ../index.php');
     }
 
     //genres generator

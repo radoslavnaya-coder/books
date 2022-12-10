@@ -11,10 +11,17 @@ async function getGenrename() {
     })
 }
 
+const selectGenre = [];
+const sel = document.querySelector('.selected-genre');
+sel.addEventListener('change', function(e){
+    selectGenre[0] = e.target.value;
+    console.log(selectGenre[0]);
+})
+
 getGenrename();
 
 async function getAuthors() {
-    let author_data = await fetch('http://books-api/books');
+    let author_data = await fetch('http://books-api/author');
     let author = await author_data.json();
     document.querySelector('.selected-author').innerHTML = '';
     author.forEach((authors) => {
@@ -24,21 +31,26 @@ async function getAuthors() {
     })
 }
 
+const selectValue = [];
+const select = document.querySelector('.selected-author');
+select.addEventListener('change', function(e){
+    selectValue[0] = e.target.value;
+    console.log(selectValue[0]);
+})
+
 getAuthors();
 
 async function addBook() {
     const bookimage = document.getElementById('bookimage').files[0],
         name = document.getElementById('name').value,
-        author = document.getElementById('author').value,
-        book_genre = document.getElementById('book_genre').value,
         book_year = document.getElementById('book_year').value,
         script = document.getElementById('script').value;
     
     let formData = new FormData();
         formData.append('bookimage', bookimage);
         formData.append('book_name', name);
-        formData.append('author_id', author);
-        formData.append('book_genre_id', book_genre);
+        formData.append('author_id', selectValue[0]);
+        formData.append('book_genre_id', selectGenre[0]);
         formData.append('book_year', book_year);
         formData.append('book_script', script);
 
@@ -46,7 +58,9 @@ async function addBook() {
         method: 'POST',
         body: formData
     });
+
     const data = await mes.json();
+    
     if (data.status === true) {
         await getBooks();
     }

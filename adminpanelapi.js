@@ -12,6 +12,45 @@ async function getGenrename() {
 }
 
 getGenrename();
+//genre generation
+
+async function getGenresname() {
+    let res = await fetch('http://books-api/genre');
+    let genre = await res.json();
+    document.querySelector('.selected-genre').innerHTML = '';
+    genre.forEach((genres) => {
+        document.querySelector('.selected-genre').innerHTML += `
+            <option id="book_genre" value="${genres.book_genre_id}" name="book_genre">${genres.genre_name}</option>
+    `
+    })
+}
+const selectGenre = [];
+const sel = document.querySelector('.selected-genre');
+sel.addEventListener('change', function(e){
+    selectGenre[0] = e.target.value;
+    console.log(selectGenre[0]);
+})
+
+getGenresname();
+
+async function getAuthors() {
+    let author_data = await fetch('http://books-api/author');
+    let author = await author_data.json();
+    document.querySelector('.selected-author').innerHTML = '';
+    author.forEach((authors) => {
+        document.querySelector('.selected-author').innerHTML += `
+            <option id="author" value="${authors.author_id}" name="author">${authors.author_name}</option>
+        `
+    })
+}
+const selectValue = [];
+const select = document.querySelector('.selected-author');
+select.addEventListener('change', function(e){
+    selectValue[0] = e.target.value;
+    console.log(selectValue[0]);
+})
+
+getAuthors();
 
 //books generation
 
@@ -24,10 +63,10 @@ async function getBooks() {
         <div class="card">
             <img src="${books.book_img}" />
             <a href="#">
-            <p style="font-size: 24px;text-align: center;line-height: 25px;">${books.book_name}</p></a>
-            <p class="card-p">${books.author_name}</p>
+            <p style="font-size: 24px;text-align: center;line-height: 25px; height: 50px">${books.book_name}</p></a>
+            <p class="card-p">${books.author_namer}</p>
             <p class="card-p">${books.book_year}</p>
-            <a href="update.html"><p class="topscript" style="width: 188px">Редактировать</p></a>
+            <a onclick="selectBook(${books.book_id})" href="#zatemnenie"><p class="topscript" style="width: 188px">Редактировать</p></a>
             <p onclick="removeBook(${books.book_id})" class="topscript" style="width: 120px; cursor:pointer">Удалить</p>
         </div>
     `;
@@ -37,11 +76,78 @@ async function getBooks() {
 //remove books
 
 async function removeBook(book_id) {
+    console.log(book_id);
     const rem = await fetch(`http://books-api/books/${book_id}`, {
          method: 'DELETE'
     });
     const deletedata = await rem.json();
     if (deletedata.status === true) {
+        await getBooks();
+    }
+}
+
+//search
+
+async function search(){
+    let searchRes = document.getElementById('searchbar').value;
+    
+    let res = await fetch('http://books-api/books');
+    let book = await res.json();
+
+    document.querySelector('.card_container').innerHTML = '';
+
+    book.forEach((books) => {
+        findBookNameSearch = books.book_name.indexOf(searchRes);
+        findAuthorNameSearch = books.author_namer.indexOf(searchRes);
+        findSearchBookName = searchRes.indexOf(books.book_name);
+        findSearchAuthorName = searchRes.indexOf(books.author_namer);
+
+        if(findSearchAuthorName != -1 || findSearchBookName != -1 || findBookNameSearch != -1 || findAuthorNameSearch != -1){
+            document.querySelector('.card_container').innerHTML += `
+            <div class="card">
+            <img src="${books.book_img}" />
+            <a href="#">
+            <p style="font-size: 24px;text-align: center;line-height: 25px;height:50px">${books.book_name}</p></a>
+            <p class="card-p">${books.author_namer}</p>
+            <p class="card-p">${books.book_year}</p>
+        </div>`;
+        }
+    })
+    searchRes = 0;
+}
+search();
+
+//update book
+
+function selectBook(book_id) {
+    id = book_id;
+    sessionStorage.setItem('id', id);
+    console.log(book_id);
+}
+async function updateBook(book_id) {
+    sessionStorage.getItem('id');
+    const bookimage = document.getElementById('bookimage').files[0],
+        name = document.getElementById('name').value,
+        book_year = document.getElementById('book_year').value,
+        script = document.getElementById('script').value;
+    
+    let formData = new FormData();
+        formData.append('book_id', book_id);
+        formData.append('bookimage', bookimage);
+        formData.append('book_name', name);
+        formData.append('author_id', selectValue[0]);
+        formData.append('book_genre_id', selectGenre[0]);
+        formData.append('book_year', book_year);
+        formData.append('book_script', script);
+
+    const mes = await fetch(`http://books-api/books/${book_id}`, {
+        method: 'POST',
+        body: formData
+    });
+
+    const data = await mes.json();
+    
+    if (data.status === true) {
         await getBooks();
     }
 }

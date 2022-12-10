@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if($_SESSION['admin']){
+        header('Location: ../adminpanel.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,15 +16,14 @@
     <link type="image/x-con" href="/img/logo.png" rel="icon">
     <title>Bookbar Сайт для поиска книги</title>
 </head>
-
 <body>
     <header>
         <img class="logo" src="/img/logo.png" />
         <div>
             <img class="feed-img" src="/img/feedimg.jpg" />
             <div class="search">
-                <a href=""><img src="/img/search.png" /></a>
-                <input type="search" placeholder="Например: Стивен Кинг" />
+                <a style="cursor: pointer;"><img onclick="search()" src="/img/search.png" /></a>
+                <input id="searchbar" type="search" placeholder="Например: Стивен Кинг" />
             </div>
             <div class="search-help__links">
                 
@@ -25,16 +31,11 @@
         </div>
     </header>
     <section>
-        <a href="/add.html">
-        <button class="create-button">
-                <p>Добавить книгу</p>
-        </button>
-        </a>
         <div class="card_container">
             
         </div>
     </section>
-    <script src="main.js"></script>
-    <script src="adminpanelapi.js"></script>
+    <script src="withapi.js"></script>
 </body>
+
 </html>
