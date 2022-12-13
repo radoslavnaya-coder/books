@@ -1,16 +1,44 @@
 //genre generation
 
 async function getGenrename() {
-    let res = await fetch("http://books-api/genre");
+    let res = await fetch('http://books-api/genre');
     let genre = await res.json();
-    document.querySelector(".search-help__links").innerHTML = "";
+
+    const selectedGenre = [];
+
+    document.querySelector('.search-help__links').innerHTML = '';
+
     genre.forEach((genres) => {
-        document.querySelector(".search-help__links").innerHTML += `
-            <div class="links" id="orange-clicker"><a>${genres.genre_name}</a></div>
-    `;
+        document.querySelector('.search-help__links').innerHTML += `
+            <input onclick="getBookByGenre(${genres.book_id})" type="button" class="links" id="orange-clicker" value="${genres.genre_name}">
+    `
+        selectedGenre.push(genres.genre_name);
     })
+    const sel = document.querySelector('.search-help__links');
+    sel.addEventListener("click", function(e) {
+        selectedGenre[0] = e.target.value;
+        console.log(selectedGenre[0]);
+    })
+    console.log(selectedGenre);
 }
 
+async function getBookByGenre(book_id) {
+    console.log(book_id);
+    let res = await fetch (`http://books-api/genre/${book_id}`);
+    let books = await res.json();
+
+    document.querySelector('.card_container').innerHTML = '';
+
+        document.querySelector('.card_container').innerHTML += `
+        <div class="card">
+            <img src="${books.book_img}" />
+            <a href="#">
+            <p style="font-size: 24px;text-align: center;line-height: 25px;height:50px">${books.book_name}</p></a>
+            <p class="card-p">${books.author_namer}</p>
+            <p class="card-p">${books.book_year}</p>
+        </div>
+    `
+}
 getGenrename();
 //genre generation
 
@@ -66,7 +94,7 @@ async function getBooks() {
             <p style="font-size: 24px;text-align: center;line-height: 25px; height: 50px">${books.book_name}</p></a>
             <p class="card-p">${books.author_namer}</p>
             <p class="card-p">${books.book_year}</p>
-            <a onclick="selectBook(${books.book_id})" href="#zatemnenie"><p class="topscript" style="width: 188px">Редактировать</p></a>
+            <a onclick="updateBook(${books.book_id})" href="#zatemnenie"><p class="topscript" style="width: 188px">Редактировать</p></a>
             <p onclick="removeBook(${books.book_id})" class="topscript" style="width: 120px; cursor:pointer">Удалить</p>
         </div>
     `;
@@ -119,13 +147,8 @@ search();
 
 //update book
 
-function selectBook(book_id) {
-    id = book_id;
-    sessionStorage.setItem('id', id);
-    console.log(book_id);
-}
 async function updateBook(book_id) {
-    sessionStorage.getItem('id');
+    console.log(book_id);
     const bookimage = document.getElementById('bookimage').files[0],
         name = document.getElementById('name').value,
         book_year = document.getElementById('book_year').value,

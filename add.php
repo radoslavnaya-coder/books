@@ -72,7 +72,7 @@
     </style>
 </head>
 <body>
-    <form action="adminpanel.html"  method="post" enctype="multipart/form-data">
+    <form action="adminpanel.php"  method="post" enctype="multipart/form-data">
         <div>
             <p>Обложка</p>
             <input id="bookimage" type="file" name="bookimage" style="color: white" required>
