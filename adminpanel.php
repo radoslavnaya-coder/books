@@ -74,7 +74,7 @@
                 <a style="cursor:pointer"><img src="/img/search.png" onclick="search()" /></a>
                 <input id="searchbar" type="search" placeholder="Например: Стивен Кинг" />
             </div>
-            <div class="search-help__links">
+            <div class="search-help__links double_link">
                 
             </div>
         </div>
@@ -90,10 +90,8 @@
         </div>
     </section>
     <!-- popup start -->
-    <div id="zatemnenie">
-        <div id="okno">
+    <div id="okno">
             <form  method="post" enctype="multipart/form-data">
-                <a href="#" class="short close"></a>
                 <div>
                     <p>Обложка</p>
                     <input id="bookimage" type="file" name="bookimage" style="color: white" required>
@@ -114,11 +112,7 @@
                     <p>Описание книги</p>
                     <textarea id="script" name="script" required></textarea>
                 </div>
-                <button class="red" type="submit" onclick="updateBook(book_id)">Редактировать книгу</button>
             </form>
-          <!-- Всплывающее окошко!<br> -->
-          <!-- <a href="#" class="close">Закрыть окно</a> -->
-        </div>
       </div>
       <!-- popup end -->
     <script src="adminpanelapi.js"></script>

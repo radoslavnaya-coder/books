@@ -82,6 +82,7 @@
             <select class="selected-author" required="required">
 
             </select>
+            
         </div>
         <div>
             <p>Жанр</p>

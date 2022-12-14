@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if($_SESSION['admin']){
+    if(isset($_SESSION['admin'])){
         header('Location: ../adminpanel.php');
     }
 ?>
@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="main.css" />
     <link type="image/x-con" href="/img/logo.png" rel="icon">
     <title>Bookbar Сайт для поиска книги</title>
+    <style>
+        .card{
+            width: 313px;
+        }
+    </style>
 </head>
 <body>
     <header>

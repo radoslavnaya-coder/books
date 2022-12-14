@@ -56,9 +56,9 @@ header div {
   margin-top: 16vh;
   margin-left: 38vw;
   width: 38vw;
-  cursor: pointer;
 }
 .links {
+  cursor: pointer;
   border: 1px solid black;
   background: none;
   border-radius: 100px;
@@ -98,8 +98,7 @@ section div {
 .card {
   margin: 2.3vh 0.5vw;
   height: 100%;
-  max-height: 420px;
-  width: 100%;
+  max-height: 440px;
   max-width: 313px;
   background-color: #d9d9d930;
 }
@@ -171,60 +170,18 @@ section div {
 }
 
 /*Popup window start*/
-.short {
-  cursor: pointer;
-  position: absolute;
-  top: 5.5vh;
-  left: 58vw;
-}
-.short:before,
-.short:after {
-  content: "";
-  position: absolute;
-  width: 1.5vw;
-  height: 0.4vh;
-  background: rgb(255, 255, 255);
-}
-.short:before {
-  transform: rotate(45deg);
-}
-.short:after {
-  transform: rotate(-45deg);
-}
-#zatemnenie {
-  background: rgba(102, 102, 102, 0.5);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: none;
-}
 #okno {
   width: 60vw;
   height: 70vh;
   text-align: center;
   padding: 15px;
-  border-radius: 10px;
-  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   margin: auto;
-  background: url(/img/back.jpg);
 }
-#zatemnenie:target {
-  display: block;
-}
-.close {
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-}
-.close:hover {
-  background: #df8541;
-}
+
 
 /*Popup window end*/
 

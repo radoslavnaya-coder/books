@@ -8,9 +8,13 @@ async function getGenrename() {
 
     document.querySelector('.search-help__links').innerHTML = '';
 
+    document.querySelector('.search-help__links').innerHTML += `
+    <input onclick="getBooks()" type="button" class="links" value="Все жанры">
+    `
+
     genre.forEach((genres) => {
         document.querySelector('.search-help__links').innerHTML += `
-            <input onclick="getBookByGenre(${genres.book_id})" type="button" class="links" id="orange-clicker" value="${genres.genre_name}">
+            <input onclick="getBookByGenre(${genres.book_genre_id})" type="button" class="links" id="orange-clicker" value="${genres.genre_name}">
     `
         selectedGenre.push(genres.genre_name);
     })
@@ -22,22 +26,26 @@ async function getGenrename() {
     console.log(selectedGenre);
 }
 
-async function getBookByGenre(book_id) {
-    console.log(book_id);
-    let res = await fetch (`http://books-api/genre/${book_id}`);
-    let books = await res.json();
+
+async function getBookByGenre(book_genre_id) {
+    console.log(book_genre_id);
+    let res = await fetch (`http://books-api/genre/${book_genre_id}`);
+    let book = await res.json();
 
     document.querySelector('.card_container').innerHTML = '';
 
-        document.querySelector('.card_container').innerHTML += `
+    book.forEach((books) => {
+        document.querySelector(".card_container").innerHTML += `
         <div class="card">
             <img src="${books.book_img}" />
-            <a href="#">
-            <p style="font-size: 24px;text-align: center;line-height: 25px;height:50px">${books.book_name}</p></a>
+            <p style="font-size: 24px;text-align: center;line-height: 25px; height: 70px">${books.book_name}</p>
             <p class="card-p">${books.author_namer}</p>
             <p class="card-p">${books.book_year}</p>
+            <a onclick="updateBook(${books.book_id})" href="#okno"><p class="topscript" style="width: 188px">Редактировать</p></a>
+            <p onclick="removeBook(${books.book_id})" class="topscript" style="width: 120px; cursor:pointer">Удалить</p>
         </div>
-    `
+    `;
+    })
 }
 getGenrename();
 
@@ -52,10 +60,10 @@ async function getBooks() {
         <div class="card">
             <img src="${books.book_img}" />
             <a href="#">
-            <p style="font-size: 24px;text-align: center;line-height: 25px;height:50px">${books.book_name}</p></a>
+            <p style="font-size: 24px;text-align: center;line-height: 25px; height: 70px">${books.book_name}</p></a>
             <p class="card-p">${books.author_namer}</p>
             <p class="card-p">${books.book_year}</p>
-        </div>
+            </div>
     `
     })
 }
@@ -81,7 +89,7 @@ async function search(){
             <div class="card">
             <img src="${books.book_img}" />
             <a href="#">
-            <p style="font-size: 24px;text-align: center;line-height: 25px;height:50px">${books.book_name}</p></a>
+            <p style="font-size: 24px;text-align: center;line-height: 25px; height: 70px">${books.book_name}</p></a>
             <p class="card-p">${books.author_namer}</p>
             <p class="card-p">${books.book_year}</p>
         </div>`;

@@ -4,6 +4,10 @@ async function getGenrename() {
     let res = await fetch('http://books-api/genre');
     let genre = await res.json();
     document.querySelector('.selected-genre').innerHTML = '';
+    
+    document.querySelector('.selected-genre').innerHTML += `
+            <option id="book_genre" value="" name="book_genre">Выберите жанр</option>
+    `
     genre.forEach((genres) => {
         document.querySelector('.selected-genre').innerHTML += `
             <option id="book_genre" value="${genres.book_genre_id}" name="book_genre">${genres.genre_name}</option>
@@ -24,6 +28,10 @@ async function getAuthors() {
     let author_data = await fetch('http://books-api/author');
     let author = await author_data.json();
     document.querySelector('.selected-author').innerHTML = '';
+
+    document.querySelector('.selected-author').innerHTML += `
+            <option id="author" value="" name="author">Выберите автора</option>
+        `
     author.forEach((authors) => {
         document.querySelector('.selected-author').innerHTML += `
             <option id="author" value="${authors.author_id}" name="author">${authors.author_name}</option>
